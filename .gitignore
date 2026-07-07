@@ -1,0 +1,5 @@
+metadb.sqlite
+*.sqlite
+*.db
+scratch/
+changeLOG*

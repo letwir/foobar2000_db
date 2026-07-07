@@ -1,0 +1,10 @@
+[database]
+# Default connection to local PostgreSQL. Change this URL to connect to a remote server.
+url = "postgres://postgres:postgres@localhost:5432/postgres"
+
+[source]
+metadb_path = "$env:USERPROFILE\\AppData\\Roaming\\foobar2000-v2\\metadb.sqlite"
+customdb_path = "$env:USERPROFILE\\AppData\\Roaming\\foobar2000-v2\\customdb_sqlite.db"
+
+[target]
+db_dir = "your\\github\\repo\\path\\foobar2000_db\\db"
