@@ -3,3 +3,4 @@ metadb.sqlite
 *.db
 scratch/
 changeLOG*
+config.toml

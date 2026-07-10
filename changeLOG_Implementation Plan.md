@@ -9,7 +9,7 @@ PostgreSQL データベースに格納された foobar2000 の楽曲情報や再
 ## User Review Required
 
 > [!IMPORTANT]
-> DBの接続文字列（`postgres://ingester:ingester_8852@db.tigris-tailor.ts.net:5432/db`）は、ソースコードや設定ファイルへの永続保存・Gitコミットを行わず、実行時の引数または一時的な環境変数として安全に引き渡す実装にいたしますわ。
+> DBの接続文字列は、ソースコードや設定ファイルへの永続保存・Gitコミットを行わず、実行時の引数または一時的な環境変数として安全に引き渡す実装にいたしますわ。
 > 
 > 全てのプログラムコード、モジュール定義、ビルドされたバイナリを `C:\Users\letwir\.gemini\config\skills\foobar-sql-exporter` 内で完結するように配置いたします。
 
@@ -49,7 +49,6 @@ Go のモジュール定義。
 ### Manual Verification
 - 提示された Postgres 接続文字列を一時環境変数にセットし、動作確認用の SQL を実行して M3U プレイリストが正しく生成されるかテストします。
   ```powershell
-  $env:DATABASE_URL="postgres://ingester:ingester_8852@db.tigris-tailor.ts.net:5432/db"
   C:\Users\letwir\.gemini\config\skills\foobar-sql-exporter\bin\fb2k-sql.exe -q "SELECT filepath FROM raw.foobar2000_tracks JOIN raw.foobar2000_stats USING(audio_md5) WHERE play_count > 5 LIMIT 10" -f m3u -o test.m3u
   ```
 - 生成された `test.m3u` の中身が正しい絶対パスになっているか確認します。

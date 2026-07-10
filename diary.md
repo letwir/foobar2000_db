@@ -67,3 +67,39 @@ Tried: Tested the output playlist, validated UTF-8 encoding and `#EXTINF` format
 Uncertainty: None.
 Search: None.
 Correction: -
+
+### 2026-07-07 22:20:26 > Hypothesis/Tried/Rejected/Uncertainty/Search/Correction
+Hypothesis: We can query the `raw.foobar2000_playlists` table to list the active playlists and show their metadata (name, hostname, track count).
+Tried: None. We need to run the `fb2k-sql.exe` tool with a select query to list the playlists.
+Uncertainty: None.
+Search: None.
+
+### 2026-07-07 22:21:50 > Hypothesis/Tried/Rejected/Uncertainty/Search/Correction
+Hypothesis: We can display the query result of active playlists categorized by hostname in a well-formatted markdown table to the user.
+Tried: Retrieved the playlist count and names from `raw.foobar2000_playlists` and `raw.foobar2000_playlist_tracks` successfully.
+Uncertainty: None.
+Search: None.
+
+### 2026-07-07 22:23:16 > Hypothesis/Tried/Rejected/Uncertainty/Search/Correction
+Hypothesis: Autoplaylist queries might be stored in the configuration table `raw.foobar2000_configs`. We can search for keys containing 'autoplaylist' or similar patterns.
+Tried: None. We need to query `raw.foobar2000_configs` for potential keys using the custom skill.
+Uncertainty: Whether autoplaylist queries are actually stored in the database or config.sqlite.
+Search: None.
+
+### 2026-07-07 22:24:20 > Hypothesis/Tried/Rejected/Uncertainty/Search/Correction
+Hypothesis: Autoplaylist queries are not in `config.sqlite`'s `configStrings`. They might be stored in other config files or within the `playlists-v2.0` directory.
+Tried: Searched `raw.foobar2000_configs` for keys related to autoplaylists; found only `library.autoComplete.fields`.
+Uncertainty: Where foobar2000 v2.0 stores autoplaylist query definitions.
+Search: Read `config.toml` to locate the source profile directory.
+
+### 2026-07-07 22:25:20 > Hypothesis/Tried/Rejected/Uncertainty/Search/Correction
+Hypothesis: Autoplaylist queries are stored inside the `props` table of `playlist-*-props.sqlite` in the `data` BLOB column. We can extract them by parsing the BLOB data.
+Tried: Tested with `playlist-29AFAB7E-FFDE-4CDA-8AA3-2361405B7C79-props.sqlite` and confirmed the query is inside the BLOB.
+Uncertainty: None.
+Search: None.
+
+### 2026-07-07 22:25:45 > Hypothesis/Tried/Rejected/Uncertainty/Search/Correction
+Hypothesis: Printing UTF-8 strings containing Japanese/special characters to Windows stdout caused cp932 encoding errors. We can fix this by writing the extracted queries directly to a UTF-8 file and reading it.
+Tried: Initial print-based extraction failed with encoding errors and garbled text.
+Uncertainty: None.
+Search: None.
